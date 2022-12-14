@@ -6,6 +6,8 @@ import bridge.domain.UserPath;
 
 public class OutputView {
 
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+
     private static final String BRIDGE_PREFIX = "[ ";
     private static final String DELIMITER = " | ";
     private static final String BRIDGE_SUFFIX = " ]";
@@ -18,6 +20,14 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private static final String TRY_NUMBER = "총 시도한 횟수: ";
+
+    public static void printStartMessage() {
+        System.out.println(GAME_START_MESSAGE);
+    }
+
+    public static void printBlankLine() {
+        System.out.println();
+    }
 
     public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
