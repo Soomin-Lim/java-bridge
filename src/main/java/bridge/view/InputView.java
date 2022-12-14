@@ -10,7 +10,7 @@ public class InputView {
 
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(GAME_START_MESSAGE);
 
         int size = convertStringToInt(Console.readLine());
@@ -19,21 +19,21 @@ public class InputView {
         return size;
     }
 
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(MOVING_INPUT_MESSAGE);
 
         String movingInput = Console.readLine();
         return movingInput;
     }
 
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(COMMAND_INPUT_MESSAGE);
 
         String command = Console.readLine();
         return command;
     }
 
-    private int convertStringToInt(String str) {
+    private static int convertStringToInt(String str) {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {

@@ -11,45 +11,41 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
     public BridgeGameController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void startGame() {
         try {
-            int bridgeSize = inputView.readBridgeSize();
+            int bridgeSize = InputView.readBridgeSize();
             InputBridgeSizeValidator.validateBridgeSize(bridgeSize);
 
             BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridgeMaker);
             playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
     }
 
     private void playGame(BridgeGame bridgeGame) {
         while (true) {
             if (!continueGame(bridgeGame)) {
-                outputView.printResult(bridgeGame);
+                OutputView.printResult(bridgeGame);
                 return;
             }
         }
     }
 
     private boolean continueGame(BridgeGame bridgeGame) {
-        String movement = inputView.readMoving();
+        String movement = InputView.readMoving();
         InputMovingValidator.validateMovingInput(movement);
 
         boolean isPass = bridgeGame.move(movement);
         boolean isSuccess = bridgeGame.checkSuccess();
 
-        outputView.printMap(bridgeGame);
+        OutputView.printMap(bridgeGame);
 
         return isContinue(bridgeGame, isPass, isSuccess);
     }
@@ -59,7 +55,7 @@ public class BridgeGameController {
             return false;
         }
         if (!isPass) {
-            String command = inputView.readGameCommand();
+            String command = InputView.readGameCommand();
             InputRetryOrExitValidator.validateRetryOrExitCommand(command);
             return bridgeGame.retry(command);
         }

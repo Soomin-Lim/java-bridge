@@ -19,11 +19,11 @@ public class OutputView {
     private static final String FAIL = "실패";
     private static final String TRY_NUMBER = "총 시도한 횟수: ";
 
-    public void printErrorMessage(String errorMessage) {
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    public void printMap(BridgeGame bridgeGame) {
+    public static void printMap(BridgeGame bridgeGame) {
         StringBuilder output = new StringBuilder();
 
         output.append(printMapOneLine(bridgeGame, "U"));
@@ -32,7 +32,7 @@ public class OutputView {
         System.out.println(output);
     }
 
-    private StringBuilder printMapOneLine(BridgeGame bridgeGame, String upOrDown) {
+    private static StringBuilder printMapOneLine(BridgeGame bridgeGame, String upOrDown) {
         StringBuilder output = new StringBuilder();
 
         output.append(BRIDGE_PREFIX);
@@ -43,7 +43,7 @@ public class OutputView {
         return output;
     }
 
-    private StringBuilder printGameState(BridgeGame bridgeGame, String upOrDown) {
+    private static StringBuilder printGameState(BridgeGame bridgeGame, String upOrDown) {
         UserPath userPath = bridgeGame.getUserPath();
 
         StringBuilder output = new StringBuilder();
@@ -56,7 +56,7 @@ public class OutputView {
         return output;
     }
 
-    private String printOneSquare(BridgeGame bridgeGame, String upOrDown, int position) {
+    private static String printOneSquare(BridgeGame bridgeGame, String upOrDown, int position) {
         Bridge bridge = bridgeGame.getBridge();
         UserPath userPath = bridgeGame.getUserPath();
 
@@ -67,14 +67,14 @@ public class OutputView {
         return EMPTY;
     }
 
-    private String passOrNo(String upOrDown, Bridge bridge, int position) {
+    private static String passOrNo(String upOrDown, Bridge bridge, int position) {
         if (bridge.compareWithPosition(position, upOrDown)) {
             return PASS;
         }
         return NO_PASS;
     }
 
-    public void printResult(BridgeGame bridgeGame) {
+    public static void printResult(BridgeGame bridgeGame) {
         System.out.println(TOTAL_RESULT);
         printMap(bridgeGame);
 
@@ -85,7 +85,7 @@ public class OutputView {
         System.out.println(bridgeGame.getTryNumber());
     }
 
-    private String successOrNot(BridgeGame bridgeGame) {
+    private static String successOrNot(BridgeGame bridgeGame) {
         if (bridgeGame.checkSuccess()) {
             return SUCCESS;
         }
